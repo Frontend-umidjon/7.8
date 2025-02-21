@@ -12,8 +12,8 @@ import {
 
 const Footer = () => {
   return (
-    <div>
-      <div className="container bg-[#111111] ">
+    <div >
+      <div className="container  bg-white border border-text-primary dark:bg-black">
         <div className=" p-8 flex justify-between flex-wrap flex-col gap-8 sm:flex-row">
           <div className="flex flex-col gap-2">
             <Link
@@ -43,7 +43,7 @@ const Footer = () => {
             {footerInfo?.map((item) => (
               <li
                 key={item.id}
-                className="flex items-center gap-2 text-white hover:text-primary hover:underline focus:text-primary focus:underline transition duration-200 cursor-pointer"
+                className="flex items-center gap-2 text-primary hover:text-primary hover:underline focus:text-primary focus:underline transition duration-200 cursor-pointer"
               >
                 <item.icon className="text-primary" />
                 {item.title}
@@ -56,7 +56,7 @@ const Footer = () => {
             {footerCategory?.map((item) => (
               <li
                 key={item.id}
-                className="flex items-center gap-2 text-white hover:text-primary hover:underline focus:text-primary focus:underline transition duration-200 cursor-pointer"
+                className="flex items-center gap-2 text-primary hover:text-primary hover:underline focus:text-primary focus:underline transition duration-200 cursor-pointer"
               >
                 <item.icon className="text-primary" />
                 {item.title}
