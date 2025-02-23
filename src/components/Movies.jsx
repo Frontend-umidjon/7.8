@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Pagination } from 'antd';
 
 const Movies = ({ data, isLoading }) => {
   return (
@@ -45,6 +46,7 @@ const Movies = ({ data, isLoading }) => {
               </div>
             </div>
           ))}
+          
     </div>
   );
 };

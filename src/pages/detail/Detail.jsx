@@ -7,6 +7,7 @@ import {
 } from "../../redux/api/movie.api";
 import Movies from "@/components/Movies";
 import { FaStar, FaRegClock } from "react-icons/fa";
+import { Image } from 'antd';
 
 const Detail = () => {
   const { id } = useParams();
@@ -85,12 +86,10 @@ const Detail = () => {
         <h2 className="text-3xl font-semibold mb-4">Gallery</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {images?.backdrops?.slice(0, 8)?.map((image) => (
-            <img
-              key={image.file_path}
-              className="w-full h-48 object-cover rounded-lg shadow-md"
-              src={`${import.meta.env.VITE_IMAGE_URL}${image.file_path}`}
-              alt="Movie Scene"
-            />
+          <Image key={image.file_path}
+          src={`${import.meta.env.VITE_IMAGE_URL}${image.file_path}`}
+          className="w-full h-48 object-cover rounded-lg shadow-md"
+          />
           ))}
         </div>
       </div>

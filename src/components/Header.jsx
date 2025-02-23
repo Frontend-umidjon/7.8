@@ -3,16 +3,14 @@ import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import bilogo from "../assets/bilogo.svg";
 import { navbarItems } from "@/static";
-import { FaRegMoon } from "react-icons/fa";
-import { BsSun } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
-import { Select } from "antd";
+import { Select, Switch } from "antd";
+import { FaRegMoon } from "react-icons/fa";
+import { BsSun } from "react-icons/bs";
 
 const Header = () => {
-  const [dark, setDark] = useState(
-    localStorage.getItem("dark-mode") || "light"
-  );
+  const [dark, setDark] = useState(localStorage.getItem("dark-mode") || "light");
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -24,8 +22,8 @@ const Header = () => {
     localStorage.setItem("dark-mode", dark);
   }, [dark]);
 
-  const handleDarkMode = () => {
-    setDark((prev) => (prev === "light" ? "dark" : "light"));
+  const handleDarkMode = (checked) => {
+    setDark(checked ? "dark" : "light");
   };
 
   return (
@@ -65,10 +63,13 @@ const Header = () => {
             { value: "UZ", label: "Oʻzbek" },
           ]}
         />
-
-        <button className="cursor-pointer text-2xl" onClick={handleDarkMode}>
-          {dark === "light" ? <FaRegMoon /> : <BsSun />}
-        </button>
+        <Switch
+          checked={dark === "dark"}
+          onChange={handleDarkMode}
+          checkedChildren={<BsSun className="text-yellow-500" />}
+          unCheckedChildren={<FaRegMoon className="text-gray-700" />}
+          className="bg-gray-300 dark:bg-gray-700"
+        />
 
         <button onClick={() => setMenuOpen(!menuOpen)} className="flex sm:hidden text-2xl">
           {menuOpen ? <IoClose /> : <GiHamburgerMenu />}
