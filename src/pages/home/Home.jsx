@@ -5,15 +5,18 @@ import Hero from "@/components/Hero";
 
 const Home = () => {
   const { data, isLoading } = useGetMoviesQuery({
-    page: 3,
+    page: 1,
     without_genres: "18,36,10749",
   });
 
   return (
     <>
-      <Hero/> 
-     
+     <Hero/> 
+     <main className="container">
+    
+      <h2 className="text-3xl my-8">Recomended movies</h2>
       <Movies data={data} />
+     </main>
     </>
   );
 };

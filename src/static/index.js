@@ -24,7 +24,7 @@ export const navbarItems = [
   {
     id: 2,
     icon: MdLocalMovies,
-    name: "Movie",
+    name: "Movies",
     path: "/movie",
   },
   {

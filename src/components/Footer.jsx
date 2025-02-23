@@ -13,7 +13,7 @@ import {
 const Footer = () => {
   return (
     <div >
-      <div className="container  bg-white border border-text-primary dark:bg-black">
+      <div className="container  bg-white border border-red-200 dark:bg-black dark:border-black">
         <div className=" p-8 flex justify-between flex-wrap flex-col gap-8 sm:flex-row">
           <div className="flex flex-col gap-2">
             <Link
@@ -68,12 +68,12 @@ const Footer = () => {
             <div className="flex flex-col gap-5">
               <p className="font-medium">Contact Us</p>
               <p className="font-medium text-xl text-primary">
-                +998 (95) 897-33-38
+                +998 (93) 615-25-64
               </p>
             </div>
 
             <div className="flex flex-col gap-5 text-primary">
-              <p className="text-white font-medium">Social Media</p>
+              <p className="dark:text-white text-black font-medium">Social Media</p>
               <div className="flex gap-5">
                 <RiInstagramLine className="min-w-5 min-h-5 cursor-pointer" />{" "}
                 <RiFacebookCircleLine className="min-w-5 min-h-5 cursor-pointer" />{" "}

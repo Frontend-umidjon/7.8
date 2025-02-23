@@ -7,10 +7,11 @@ import { FaRegMoon } from "react-icons/fa";
 import { BsSun } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
+import { Select } from "antd";
 
 const Header = () => {
   const [dark, setDark] = useState(
-    localStorage.getItem("dark-mode") || "light",
+    localStorage.getItem("dark-mode") || "light"
   );
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -29,10 +30,7 @@ const Header = () => {
 
   return (
     <div className="container flex justify-between items-center p-4 relative">
-      <NavLink
-        to={"/"}
-        className="text-2xl font-medium flex items-center gap-2"
-      >
+      <NavLink to={"/"} className="text-2xl font-medium flex items-center gap-2">
         <img src={logo} alt="Logo" />
         <img src={bilogo} alt="Bilogo" />
       </NavLink>
@@ -57,37 +55,22 @@ const Header = () => {
       </div>
 
       <div className="flex items-center gap-4">
-        <div className="bg-[#1D1D1D80] rounded-xl">
-          <select className="bg-inherit p-2 rounded-xl text-white dark:text-black dark:bg-white">
-            <option
-              className="bg-white dark:bg-black text-black dark:text-white"
-              value=""
-            >
-              Ru
-            </option>
-            <option
-              className="bg-white dark:bg-black text-black dark:text-white"
-              value=""
-            >
-              Uzb
-            </option>
-            <option
-              className="bg-white dark:bg-black text-black dark:text-white"
-              value=""
-            >
-              Eng
-            </option>
-          </select>
-        </div>
+        <Select
+          defaultValue="EN"
+          style={{ width: 120 }}
+          className="dark:bg-gray-800 dark:text-white"
+          options={[
+            { value: "EN", label: "English" },
+            { value: "RU", label: "Русский" },
+            { value: "UZ", label: "Oʻzbek" },
+          ]}
+        />
 
         <button className="cursor-pointer text-2xl" onClick={handleDarkMode}>
           {dark === "light" ? <FaRegMoon /> : <BsSun />}
         </button>
 
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="flex sm:hidden text-2xl"
-        >
+        <button onClick={() => setMenuOpen(!menuOpen)} className="flex sm:hidden text-2xl">
           {menuOpen ? <IoClose /> : <GiHamburgerMenu />}
         </button>
       </div>
