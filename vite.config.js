@@ -5,7 +5,7 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss(), VitePWA({ registerType: 'autoUpdate' })],
+  plugins: [react(), tailwindcss(), ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
