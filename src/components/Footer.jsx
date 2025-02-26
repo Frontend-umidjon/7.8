@@ -13,7 +13,7 @@ import {
 const Footer = () => {
   return (
     <div >
-      <div className="container  bg-white border border-red-200 dark:bg-black dark:border-black">
+      <div className="container  bg-white  dark:bg-black dark:border-black">
         <div className=" p-8 flex justify-between flex-wrap flex-col gap-8 sm:flex-row">
           <div className="flex flex-col gap-2">
             <Link
