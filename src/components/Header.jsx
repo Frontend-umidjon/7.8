@@ -5,13 +5,13 @@ import bilogo from "../assets/bilogo.svg";
 import { navbarItems } from "@/static";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
-import { Select, Switch } from "antd";
-import { FaRegMoon } from "react-icons/fa";
-import { BsSun } from "react-icons/bs";
+import { Segmented, Select } from "antd";
+import { MoonOutlined, SunOutlined } from '@ant-design/icons';
 
 const Header = () => {
   const [dark, setDark] = useState(localStorage.getItem("dark-mode") || "light");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [size, setSize] = useState('middle');
 
   useEffect(() => {
     if (dark === "dark") {
@@ -22,18 +22,18 @@ const Header = () => {
     localStorage.setItem("dark-mode", dark);
   }, [dark]);
 
-  const handleDarkMode = (checked) => {
-    setDark(checked ? "dark" : "light");
+  const handleDarkMode = (value) => {
+    setDark(value);
   };
 
   return (
-    <div className="container flex justify-between items-center p-4 relative">
+    <div className="container flex justify-between items-center p-4 relative w-full max-w-7xl mx-auto">
       <NavLink to={"/"} className="text-2xl font-medium flex items-center gap-2">
-        <img src={logo} alt="Logo" />
-        <img src={bilogo} alt="Bilogo" />
+        <img src={logo} alt="Logo" className="h-8 w-auto" />
+        <img src={bilogo} alt="Bilogo" className="h-8 w-auto" />
       </NavLink>
 
-      <div className="hidden sm:flex items-center gap-8">
+      <div className="hidden md:flex items-center gap-8">
         {navbarItems?.map((item) => (
           <NavLink
             key={item.id}
@@ -63,28 +63,36 @@ const Header = () => {
             { value: "UZ", label: "Oʻzbek" },
           ]}
         />
-        <Switch
-          checked={dark === "dark"}
+        <Segmented
+          value={dark}
           onChange={handleDarkMode}
-          checkedChildren={<BsSun className="text-yellow-500" />}
-          unCheckedChildren={<FaRegMoon className="text-gray-700" />}
-          className="bg-gray-300 dark:bg-gray-700"
+          size={size}
+          shape="round"
+          options={[
+            {
+              value: 'light',
+              icon: <SunOutlined />,
+            },
+            {
+              value: 'dark',
+              icon: <MoonOutlined />,
+            },
+          ]}
         />
-
-        <button onClick={() => setMenuOpen(!menuOpen)} className="flex sm:hidden text-2xl">
+        <button onClick={() => setMenuOpen(!menuOpen)} className="flex md:hidden text-2xl">
           {menuOpen ? <IoClose /> : <GiHamburgerMenu />}
         </button>
       </div>
 
       <div
         onClick={() => setMenuOpen(false)}
-        className={`absolute top-full w-full h-screen bg-[#0000006b] dark:bg-[#000000b0] transition-all duration-300 ${
+        className={`fixed top-0 left-0 w-full h-full bg-[#0000006b] dark:bg-[#000000b0] transition-all duration-300 z-50 ${
           menuOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
       >
         <div
           onClick={(e) => e.stopPropagation()}
-          className="flex flex-col absolute right-0 items-center bg-white dark:bg-gray-900 shadow-lg rounded-lg sm:hidden w-52 p-4 gap-3 transition-all duration-300"
+          className="flex flex-col absolute right-0 top-0 bg-white dark:bg-gray-900 shadow-lg rounded-lg md:hidden w-64 p-6 gap-3 transition-all duration-300 h-full"
         >
           {navbarItems?.map((item) => (
             <NavLink

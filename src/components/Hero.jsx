@@ -81,7 +81,7 @@ const Hero = () => {
           className="w-full h-24"
         >
           {data?.results?.slice(0, 5)?.map((movie) => (
-            <SwiperSlide key={movie.id} className="cursor-pointer border-2 border-transparent hover:border-red-600 transition-all">
+            <SwiperSlide key={movie.id} className="cursor-pointer border-2 border-transparent hover:border-red-600 hover:rounded-[8px] transition-all">
               <img
                 className="w-full h-full object-cover object-top rounded-md"
                 src={`${import.meta.env.VITE_IMAGE_URL + movie.backdrop_path}`}

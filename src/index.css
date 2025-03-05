@@ -124,19 +124,7 @@
 .ant-pagination-item-link > span{
   color: #f00;
 }
-:where(.css-dev-only-do-not-override-64snmi).ant-switch .ant-switch-inner .ant-switch-inner-unchecked{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-:where(.css-dev-only-do-not-override-64snmi).ant-switch.ant-switch-checked .ant-switch-inner .ant-switch-inner-checked{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-:where(.css-dev-only-do-not-override-64snmi).ant-pagination .ant-pagination-jump-next .ant-pagination-item-container .ant-pagination-item-ellipsis{
-  color: #f00;
-}
+
 
 @media (min-width:1280px) {
   ::-webkit-scrollbar {
