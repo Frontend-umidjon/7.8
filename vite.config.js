@@ -9,10 +9,10 @@ export default defineConfig({
   plugins: [react(), tailwindcss(),  VitePWA({
     includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
     manifest: {
-      name: 'My Awesome App',
-      short_name: 'MyApp',
-      description: 'My Awesome App description',
-      theme_color: '#ffffff',
+      name: 'BileTick',
+      short_name: 'BileTick',
+      description: 'The Movie Web App',
+      theme_color: '#f00',
       icons: [
         {
           src: 'pwa-192x192.png',
