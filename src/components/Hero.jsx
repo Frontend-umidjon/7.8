@@ -21,17 +21,15 @@ const Hero = () => {
 
   if (isLoading) {
     return (
-      <div className="w-full h-[500px] sm:h-[600px] md:h-[700px] flex items-center justify-center text-white">
-        <div className="animate-pulse w-full h-full flex items-center justify-center bg-gray-800">
-          <div className="w-3/4 h-3/4 bg-gray-700 rounded-lg"></div>
-        </div>
+      <div className="w-full h-[700px] flex items-center justify-center text-white bg-black">
+        <div className="animate-pulse w-3/4 h-3/4 bg-gray-700 rounded-lg"></div>
       </div>
     );
   }
 
   return (
     <>
-      <div className="w-full h-[500px] sm:h-[600px] md:h-[700px] bg-white text-black flex items-center justify-center dark:bg-black dark:text-white">
+      <div className="relative w-full h-[700px] text-white">
         {data ? (
           <Swiper
             modules={[Pagination, Navigation, Autoplay, Thumbs]}
@@ -39,25 +37,25 @@ const Hero = () => {
             slidesPerView={1}
             navigation
             pagination={{ clickable: true }}
-            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            autoplay={{ delay: 4000, disableOnInteraction: false }}
             thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
             className="w-full h-full"
             loop={true}
           >
             {data?.results?.slice(0, 5)?.map((movie) => (
-              <SwiperSlide key={movie.id} className="w-full h-full relative">
+              <SwiperSlide key={movie.id} className="relative w-full h-full">
                 <div
-                  className="w-full h-full bg-cover bg-center brightness-75 flex items-center justify-center"
+                  className="w-full h-full bg-cover bg-center flex items-center justify-center before:absolute before:inset-0 before:bg-black/50"
                   style={{ backgroundImage: `url(${import.meta.env.VITE_IMAGE_URL + movie.backdrop_path})` }}
                 >
-                  <div className="absolute p-8 bottom-0 flex flex-col items-center justify-center text-center px-4 sm:px-8 md:px-16 lg:px-24 w-full bg-black opacity-65">
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 drop-shadow-md">
+                  <div className="relative z-10 p-8 max-w-2xl text-center">
+                    <h2 className="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg">
                       {movie.title}
                     </h2>
-                    <p className="line-clamp-3 text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 max-w-2xl mb-6 drop-shadow-md">
+                    <p className="mt-4 text-lg text-gray-300 max-w-2xl line-clamp-3">
                       {movie.overview}
                     </p>
-                    <button className="flex items-center gap-2 cursor-pointer mt-4 px-6 py-3 bg-red-600 hover:bg-red-500 text-white text-sm sm:text-base md:text-lg rounded-lg shadow-lg">
+                    <button className="mt-6 flex items-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-500 text-white text-lg font-semibold rounded-lg shadow-lg transition-transform transform hover:scale-105">
                       <FaPlay /> Watch Now
                     </button>
                   </div>
@@ -66,24 +64,24 @@ const Hero = () => {
             ))}
           </Swiper>
         ) : (
-          <div>No movie data</div>
+          <div className="text-center">No movie data</div>
         )}
       </div>
-      <div className="mt-4 w-full max-w-4xl mx-auto">
+      <div className="mt-6 w-full max-w-4xl mx-auto">
         <Swiper
           onSwiper={setThumbsSwiper}
           loop={true}
           spaceBetween={10}
-          slidesPerView={3}
+          slidesPerView={4}
           freeMode={true}
           watchSlidesProgress={true}
           modules={[FreeMode, Thumbs]}
-          className="w-full h-24"
+          className="w-full h-28"
         >
           {data?.results?.slice(0, 5)?.map((movie) => (
-            <SwiperSlide key={movie.id} className="cursor-pointer border-2 border-transparent hover:border-red-600 hover:rounded-[8px] transition-all">
+            <SwiperSlide key={movie.id} className="cursor-pointer border-2 border-transparent hover:border-red-600 transition-all overflow-hidden">
               <img
-                className="w-full h-full object-cover object-top rounded-md"
+                className="w-full h-full object-cover rounded-md transform hover:scale-105 transition-all"
                 src={`${import.meta.env.VITE_IMAGE_URL + movie.backdrop_path}`}
                 alt={movie.title}
               />
