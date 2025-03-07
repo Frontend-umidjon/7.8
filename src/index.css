@@ -159,3 +159,6 @@
 .swiper-button-next::after{
   color: #f00 ;
 }
+:where(.css-dev-only-do-not-override-zgpvpn).ant-btn{
+  padding: 21.38px 20px;
+}

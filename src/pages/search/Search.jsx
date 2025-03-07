@@ -69,7 +69,7 @@ const Search = () => {
      
             {!isLoading && !data?.total_results && (
                 <div className="mt-6 flex justify-center">
-                    <Empty description="No movies found" className="text-gray-300" />
+                    <Empty description="No movies found" className="text-red-500" />
                 </div>
             )}
 
