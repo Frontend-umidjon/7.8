@@ -15,7 +15,7 @@ const Home = () => {
      <main className="container">
     
       <h2 className="text-3xl my-8">Recomended movies</h2>
-      <Movies data={data} />
+      <Movies data={data}  />
      </main>
     </>
   );

@@ -14,7 +14,7 @@ const Movies = ({ data, isLoading }) => {
   };
 
   return (
-    <div className="container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 mt-10 px-4">
+    <div className="container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4  gap-4 mt-10 px-4">
       {data?.results?.map((movie) => (
         <div
           className="border border-gray-300 dark:border-gray-800 dark:bg-gray-700 rounded-lg overflow-hidden relative shadow-md"
@@ -32,7 +32,7 @@ const Movies = ({ data, isLoading }) => {
             className="block w-full h-60 sm:h-72 md:h-64 lg:h-72 bg-gray-400"
           >
             <img
-              className="w-full h-full object-cover rounded-t-lg"
+              className="w-full h-full object-cover object-top rounded-t-lg"
               src={import.meta.env.VITE_IMAGE_URL + movie.poster_path}
               alt={movie.title}
             />

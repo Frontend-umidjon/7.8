@@ -152,3 +152,10 @@
 :where(.css-dev-only-do-not-override-64snmi).ant-empty .ant-empty-description{
   color: #f00;
 }
+
+.swiper-button-prev::after{
+  color: #f00 ;
+}
+.swiper-button-next::after{
+  color: #f00 ;
+}
