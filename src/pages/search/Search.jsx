@@ -21,7 +21,7 @@ const Search = () => {
             clearInterval(timerRef.current);
         }
         return () => clearInterval(timerRef.current);
-    }, [auto]);
+    }, [auto, setPercent]);
 
     const onSearch = (value) => {
         if (value.trim()) {
