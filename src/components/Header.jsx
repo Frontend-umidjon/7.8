@@ -1,31 +1,33 @@
-"use client"
-
-import { useEffect, useState } from "react"
-import { NavLink } from "react-router-dom"
-import logo from "../assets/logo.svg"
-import bilogo from "../assets/bilogo.svg"
-import { navbarItems } from "@/static"
-import { Menu, X } from "lucide-react"
-import { Segmented, Select } from "antd"
-import { MoonOutlined, SunOutlined } from "@ant-design/icons"
+import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
+import logo from "../assets/logo.svg";
+import bilogo from "../assets/bilogo.svg";
+import { navbarItems } from "@/static";
+import { Menu, X } from "lucide-react";
+import { Segmented, Select } from "antd";
+import { MoonOutlined, SunOutlined } from "@ant-design/icons";
 
 const Header = () => {
-  const [dark, setDark] = useState(localStorage.getItem("dark-mode") || "light")
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [size, setSize] = useState(window.innerWidth < 640 ? "small" : "middle")
+  const [dark, setDark] = useState(localStorage.getItem("dark-mode") || "light");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [size, setSize] = useState(window.innerWidth < 640 ? "small" : "middle");
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
-    const handleResize = () => setSize(window.innerWidth < 640 ? "small" : "middle")
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
+    const handleResize = () => {
+      setSize(window.innerWidth < 640 ? "small" : "middle");
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", dark === "dark")
-    localStorage.setItem("dark-mode", dark)
-    document.body.style.overflow = menuOpen ? "hidden" : "auto"
-    return () => (document.body.style.overflow = "auto")
-  }, [dark, menuOpen])
+    document.documentElement.classList.toggle("dark", dark === "dark");
+    localStorage.setItem("dark-mode", dark);
+    document.body.style.overflow = menuOpen ? "hidden" : "auto";
+    return () => (document.body.style.overflow = "auto");
+  }, [dark, menuOpen]);
 
   return (
     <header className="sticky top-0 z-40 bg-white dark:bg-black shadow-sm">
@@ -45,14 +47,18 @@ const Header = () => {
           ))}
         </nav>
         <div className="flex items-center gap-2 sm:gap-4">
-          <Select defaultValue="EN" style={{ width: 80 }} size={size} className="dark:bg-gray-800 dark:text-white hidden xs:block" options={[{ value: "EN", label: "English" }, { value: "RU", label: "Русский" }, { value: "UZ", label: "Oʻzbek" }]} />
-          <Segmented value={dark} onChange={setDark} size={size} shape="round" options={[{ value: "light", icon: <SunOutlined /> }, { value: "dark", icon: <MoonOutlined /> }]} />
-          <button onClick={() => setMenuOpen(!menuOpen)} className="flex md:hidden text-xl p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" aria-label="Toggle menu">
+          {!isMobile && (
+            <><Select defaultValue="EN" style={{ width: 80 }} size={size} className="dark:bg-gray-800 dark:text-white hidden xs:block" options={[{ value: "EN", label: "English" }, { value: "RU", label: "Русский" }, { value: "UZ", label: "Oʻzbek" }]} />
+             <Segmented value={dark} onChange={setDark} size={size} shape="round" options={[{ value: "light", icon: <SunOutlined /> }, { value: "dark", icon: <MoonOutlined /> }]} />
+            </>
+          )}
+        
+          <button onClick={() => setMenuOpen(!menuOpen)} className="flex md:hidden text-xl p-1 rounded-md hover:bg-gray-100 dark:hover:bg-black transition-colors" aria-label="Toggle menu">
             {menuOpen ? <X /> : <Menu />}
           </button>
         </div>
         <div onClick={() => setMenuOpen(false)} className={`fixed top-0 left-0 w-full h-full bg-black/60 dark:bg-black/80 transition-all duration-300 z-50 ${menuOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}>
-          <div onClick={(e) => e.stopPropagation()} className={`flex flex-col absolute right-0 top-0 bg-white dark:bg-gray-900 shadow-lg md:hidden w-64 sm:w-80 max-w-[80vw] p-5 gap-3 transition-all duration-300 h-full transform ${menuOpen ? "translate-x-0" : "translate-x-full"}`}>
+          <div onClick={(e) => e.stopPropagation()} className={`flex flex-col absolute right-0 top-0 bg-white dark:bg-black shadow-lg md:hidden w-64 sm:w-80 max-w-[80vw] p-5 gap-3 transition-all duration-300 h-full transform ${menuOpen ? "translate-x-0" : "translate-x-full"}`}>
             <div className="flex items-center justify-between mb-4 pb-4 border-b dark:border-gray-700">
               <NavLink to="/" className="flex items-center gap-2" onClick={() => setMenuOpen(false)}>
                 <img src={logo || "/placeholder.svg"} alt="Logo" className="h-7" />
@@ -77,7 +83,7 @@ const Header = () => {
         </div>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
